@@ -51,8 +51,8 @@
 		cartProducts = cartProducts.filter((product) => product.id !== id);
 	}
 
-	const updateType = () => {
-		product_type = product_type
+	const updateType = (event) => {
+		product_type = event.target.value;
 	}
 
 </script>
@@ -100,7 +100,8 @@
 					<p class="mb-2 overflow-hidden truncate text-lg font-medium text-gray-800">
 						{product.title}
 					</p>
-					<select bind:value={product_type} onchange={updateType}>
+					<select onchange={updateType}>
+						<option value="0" disabled selected>Select your size</option>
 						{#each Object.values(stockValues[product.id]) as inStock}
 							{#if inStock.stock > 0}
 								{#each sizeValues as inSize}
