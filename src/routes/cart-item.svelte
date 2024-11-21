@@ -21,7 +21,7 @@
 		/>
 		<div>
 			<p class="font-medium">{cartProduct.product.title}</p>
-			<p class="text-sm">{cartProduct.product.type}</p>
+			<p class="text-sm">{cartProduct.dimension[cartProduct.type - 1].type}</p>
 			<p class="text-sm">${cartProduct.product.price} each</p>
 		</div>
 	</div>
@@ -39,9 +39,6 @@
 		>
 			<Minus class="size-4" />
 		</button>
-		<span class="mx-2">
-			{cartProduct.type}
-		</span>
 		<span class="mx-2">
 			{cartProduct.quantity}
 		</span>

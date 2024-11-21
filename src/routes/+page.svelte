@@ -10,6 +10,7 @@
 	let cartOpen = $state(false);
 	let cartProducts = $state<RugbyShirts[]>([]);
 	let product_type = $state(0);
+	let size_type = $state(0);
 
 	const cartStats = $derived.by(() => {
 		let quantity = 0;
@@ -26,6 +27,7 @@
 
 	let stockValues:object[] = [];
 	let sizeValues = data.products[0].dimension;
+
 	data.products.forEach((item, i) => {
 		stockValues[item.id]= item.stock;
 	});
@@ -51,8 +53,10 @@
 		cartProducts = cartProducts.filter((product) => product.id !== id);
 	}
 
-	const updateType = (event) => {
-		product_type = event.target.value;
+	const updateType = (event: any) => {
+		let selected = event.target.value.split('|');
+		product_type = selected[0];
+		size_type = selected[1];
 	}
 
 </script>
@@ -106,7 +110,7 @@
 							{#if inStock.stock > 0}
 								{#each sizeValues as inSize}
 									{#if inSize.id == inStock.size_id}
-										<option value="{ inSize.id }">{ inSize.type }</option>
+										<option value="{product.id}|{ inSize.id }">{ inSize.type }</option>
 									{/if}
 								{/each}
 							{/if}						
@@ -117,12 +121,18 @@
 						<button
 							class="rounded-full bg-sky-600 px-4 py-2 text-white transition-colors duration-300 hover:bg-sky-700"
 							onclick={() => {
-								cartProducts.push({
-									id: product.id,
-									quantity: 1,
-									type: product_type,
-									product: product
-								});
+								if (product_type == product.id && size_type > 0) {
+									cartProducts.push({
+										id: product.id,
+										quantity: 1,
+										type: size_type,
+										product: product,
+										dimension: sizeValues
+									});
+								}
+								else {
+									alert('Select the size you require!');
+								}
 							}}
 						>
 							Add to cart
