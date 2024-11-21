@@ -29,6 +29,7 @@ export type CartProduct = {
 	quantity: number;
 	type: number;
 	image: string[];
+	dimension: Dimensions;
 }
 
 export type Dimensions = {

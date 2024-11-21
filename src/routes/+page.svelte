@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { RugbyShirts, Dimensions, Review, Scan, Country } from '$lib/types';
+	import type { RugbyShirts } from '$lib/types';
     import { Log } from 'phosphor-svelte';
 	import CartItem from './cart-item.svelte';
 	import ShoppingCart from 'phosphor-svelte/lib/ShoppingCart';
 	import X from 'phosphor-svelte/lib/X';
+	import { goto } from '$app/navigation';
 
 	let { data } = $props();
 
@@ -33,7 +34,7 @@
 	});
 
 
-	const qualifiesForFreeShipping = $derived(cartStats.total >= 50);
+	const qualifiesForFreeShipping = $derived(cartStats.total >= 250);
 
 	let freeShippingAlertCount = 0;
 
@@ -88,7 +89,11 @@
 					<div class="mt-4 border-gray-200 pt-4">
 						<p class="text-lg font-semibold">Total: ${cartStats.total.toFixed(2)}</p>
 					</div>
-					<button>Checkout</button>
+					<button class="rounded-full bg-sky-600 px-4 py-2 text-white transition-colors duration-300 hover:bg-sky-700"
+					onclick={() => {
+						localStorage.setItem('cartCheckout', JSON.stringify(cartProducts));
+						goto('/checkout');
+					}}>Checkout</button>
 				</div>
 			</div>
 		{/if}
@@ -126,6 +131,7 @@
 										id: product.id,
 										quantity: 1,
 										type: size_type,
+										price: product.price,
 										product: product,
 										dimension: sizeValues
 									});
