@@ -1,4 +1,4 @@
-import type { RugbyShirts, Dimensions, Review, Scan, Country } from '$lib/types';
+import type { RugbyShirts } from '$lib/types';
 import type { PageLoad } from './$types';
 import { PUBLIC_BEARER_TOKEN } from '$env/static/public';
 

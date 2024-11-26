@@ -33,14 +33,8 @@
 		stockValues[item.id]= item.stock;
 	});
 
-
 	const qualifiesForFreeShipping = $derived(cartStats.total >= 250);
-
 	let freeShippingAlertCount = 0;
-
-	//set size and quantity of the product ordered using these variables
-	let size = 0;
-	let quantity = 0;
 
 	$effect(() => {
 		if (freeShippingAlertCount > 0) return;
@@ -109,7 +103,7 @@
 					<p class="mb-2 overflow-hidden truncate text-lg font-medium text-gray-800">
 						{product.title}
 					</p>
-					<select onchange={updateType}>
+					<select class="py-2" onchange={updateType}>
 						<option value="0" disabled selected>Select your size</option>
 						{#each Object.values(stockValues[product.id]) as inStock}
 							{#if inStock.stock > 0}
