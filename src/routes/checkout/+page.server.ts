@@ -9,13 +9,10 @@ export const actions = {
 
     const response = await fetch('http://rugbyapi.shineconsultglobal.com/api/shirts', {
 			method: 'POST',
-			body: JSON.stringify({ data }),
-			headers: {
-				Authorization: 'Bearer ' + PUBLIC_BEARER_TOKEN,
-				'Content-Type': 'application/json'
-			}
+			body: data,
+			headers: {Authorization: 'Bearer ' + PUBLIC_BEARER_TOKEN}
 		});
 
-    return response;
+    console.log(response);
 	}
 } satisfies Actions;
