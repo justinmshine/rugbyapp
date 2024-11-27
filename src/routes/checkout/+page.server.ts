@@ -1,4 +1,5 @@
 import type { Actions } from './$types';
+import { PUBLIC_BEARER_TOKEN } from '$env/static/public';
 
 export const actions = {
 	sale: async ({ cookies, request }) => {
@@ -10,6 +11,7 @@ export const actions = {
 			method: 'POST',
 			body: JSON.stringify({ data }),
 			headers: {
+				Authorization: 'Bearer ' + PUBLIC_BEARER_TOKEN,
 				'Content-Type': 'application/json'
 			}
 		});
