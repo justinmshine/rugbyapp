@@ -45,7 +45,14 @@
 		<button
 			class="rounded p-1 hover:bg-gray-200"
 			aria-label="Add 1 to quantity"
-			onclick={() => cartProduct.quantity++}
+			onclick={() => {
+				if(cartProduct.quantity < cartProduct.product.stock[cartProduct.type - 1].stock) {
+					cartProduct.quantity++;
+				}
+				else {
+					alert('You have reached the limit of available stock!');
+				}
+			}}
 		>
 			<Plus class="size-4" />
 		</button>
