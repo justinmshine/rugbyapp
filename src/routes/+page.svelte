@@ -94,6 +94,15 @@
 	</div>
 </div>
 
+<div class="flex flex-col items-center bg-white-300">
+	<button
+		onclick={() => {
+			goto('/lions');	}}
+		class="rounded-full bg-red-600 my-4 px-4 py-2 text-white transition-colors duration-300 sm:w-1/2 md:w-1/4">
+		British Lions Prize Draw
+	</button>
+</div>
+
 <div class="grid grid-cols-1 gap-6 bg-gray-100 p-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 	{#each data.products as product}
 		{#if product.stock?.length > 0 }
