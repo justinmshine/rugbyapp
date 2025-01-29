@@ -3,7 +3,7 @@ import { PUBLIC_BEARER_TOKEN } from '$env/static/public';
 import { redirect } from '@sveltejs/kit';
 
 export const actions = {
-	draw: async ({ cookies, request }) => {
+	default: async ({ cookies, request }) => {
         const data = await request.formData();
         console.log('Record the sale');
         console.log(data);
